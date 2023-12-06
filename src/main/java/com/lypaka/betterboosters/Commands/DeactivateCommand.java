@@ -31,7 +31,7 @@ public class DeactivateCommand {
                                                                                 if (c.getSource().getEntity() instanceof ServerPlayerEntity) {
 
                                                                                     ServerPlayerEntity player = (ServerPlayerEntity) c.getSource().getEntity();
-                                                                                    if (!PermissionHandler.hasPermission(player, "pixelboosters.command.admin")) {
+                                                                                    if (!PermissionHandler.hasPermission(player, "betterboosters.command.admin")) {
 
                                                                                         player.sendMessage(FancyText.getFormattedText("&cYou don't have permission to use this command!"), player.getUniqueID());
                                                                                         return 1;
