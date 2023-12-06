@@ -7,9 +7,6 @@ import com.lypaka.betterboosters.Boosters.DefaultBoosters.CaptureBooster;
 import com.lypaka.betterboosters.Boosters.GlobalBooster;
 import com.lypaka.lypakautils.MiscHandlers.PermissionHandler;
 import com.pixelmonmod.pixelmon.api.events.ExperienceGainEvent;
-import com.pixelmonmod.pixelmon.api.events.pokemon.EVsGainedEvent;
-import com.pixelmonmod.pixelmon.api.pokemon.species.evs.EVYields;
-import com.pixelmonmod.pixelmon.api.pokemon.stats.EVStore;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -17,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class ExperienceListeners {
+public class ExperienceListener {
 
     @SubscribeEvent
     public void onEXPGain (ExperienceGainEvent event) {

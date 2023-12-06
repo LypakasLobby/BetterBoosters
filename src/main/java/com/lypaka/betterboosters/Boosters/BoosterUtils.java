@@ -450,13 +450,6 @@ public class BoosterUtils {
                 TokensBooster booster = new TokensBooster(modifier, timerMap);
                 booster.create();
 
-            } else if (b.equalsIgnoreCase("Winnings")) {
-
-                String modifier = BetterBoosters.boosterConfigManager.getConfigNode(index, "Modifier").getString();
-
-                WinningsBooster booster = new WinningsBooster(modifier, timerMap);
-                booster.create();
-
             }
 
         }

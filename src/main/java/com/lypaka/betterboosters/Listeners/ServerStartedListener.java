@@ -6,6 +6,7 @@ import com.lypaka.betterboosters.Commands.BetterBoostersCommand;
 import com.lypaka.betterboosters.Listeners.Boosters.AttackListeners;
 import com.lypaka.betterboosters.Listeners.Boosters.CaptureListener;
 import com.lypaka.betterboosters.Listeners.Boosters.DefaultPixelmonSpawnerListeners;
+import com.lypaka.betterboosters.Listeners.Boosters.ExperienceListener;
 import com.pixelmonmod.pixelmon.Pixelmon;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -26,6 +27,7 @@ public class ServerStartedListener {
         Pixelmon.EVENT_BUS.register(new AttackListeners());
         Pixelmon.EVENT_BUS.register(new CaptureListener());
         Pixelmon.EVENT_BUS.register(new DefaultPixelmonSpawnerListeners());
+        Pixelmon.EVENT_BUS.register(new ExperienceListener());
 
         GlobalBoosterTask.runGlobalTimer();
 
