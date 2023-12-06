@@ -28,8 +28,8 @@ public class BetterBoosters {
     public static BasicConfigManager boosterConfigManager;
     public static PlayerConfigManager playerConfigManager;
     public static Path dir;
-    public static List<String> boosters = new ArrayList<>(Arrays.asList("Attack", "Boss", "Capture", "EV", "EXP", "HA",
-            "Hatch", "IV", "Legendary", "Shiny", "Texture", "Winnings"));
+    public static List<String> boosters = new ArrayList<>(Arrays.asList("Attack", "Boss", "Capture", "EXP", "HA",
+            "IV", "Legendary", "Shiny", "Texture", "Winnings"));
 
     // TODO:
     /*

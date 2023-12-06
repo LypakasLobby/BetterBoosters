@@ -383,13 +383,6 @@ public class BoosterUtils {
                 CaptureBooster booster = new CaptureBooster(modifier, timerMap);
                 booster.create();
 
-            } else if (b.equalsIgnoreCase("EV")) {
-
-                String modifier = BetterBoosters.boosterConfigManager.getConfigNode(index, "Modifier").getString();
-
-                EVBooster booster = new EVBooster(modifier, timerMap);
-                booster.create();
-
             } else if (b.equalsIgnoreCase("EXP")) {
 
                 String modifier = BetterBoosters.boosterConfigManager.getConfigNode(index, "Modifier").getString();
@@ -402,13 +395,6 @@ public class BoosterUtils {
                 double chance = BetterBoosters.boosterConfigManager.getConfigNode(index, "Chance").getDouble();
 
                 HABooster booster = new HABooster(chance, timerMap);
-                booster.create();
-
-            } else if (b.equalsIgnoreCase("Hatch")) {
-
-                String modifier = BetterBoosters.boosterConfigManager.getConfigNode(index, "Modifier").getString();
-
-                HatchBooster booster = new HatchBooster(modifier, timerMap);
                 booster.create();
 
             } else if (b.equalsIgnoreCase("IV")) {
