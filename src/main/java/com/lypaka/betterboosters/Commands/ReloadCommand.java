@@ -42,6 +42,7 @@ public class ReloadCommand {
                                                     BetterBoosters.boosterConfigManager.load();
                                                     BoosterUtils.loadBoosters();
                                                     BetterBoostersCommand.createListWithRandom();
+                                                    BoosterUtils.loadGlobalBoosters();
 
                                                 } catch (ObjectMappingException e) {
 

@@ -21,7 +21,7 @@ public class BetterBoosters {
 
     public static final String MOD_ID = "betterboosters";
     public static final String MOD_NAME = "BetterBoosters";
-    public static final Logger logger = LogManager.getLogger("BetterBoosters");
+    public static final Logger logger = LogManager.getLogger(MOD_NAME);
     public static boolean isBetterMissionsLoaded = false;
     public static boolean isBetterLuresLoaded = false;
     public static BasicConfigManager configManager;

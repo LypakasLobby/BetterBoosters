@@ -461,10 +461,12 @@ public class BoosterUtils {
     public static void loadGlobalBoosters() throws ObjectMappingException {
 
         // index 2
+        globalBoosters = new HashMap<>();
         LocalDateTime now = LocalDateTime.now();
         for (Map.Entry<String, Map<String, String>> entry : ConfigGetters.globalBoosters.entrySet()) {
 
             String globalBoosterName = entry.getKey();
+            BetterBoosters.logger.info("Creating Global Booster from value: " + globalBoosterName + " in the global-boosters.conf file");
             List<String> boosterNames = BetterBoosters.configManager.getConfigNode(2, "Global-Boosters", globalBoosterName, "Boosters").getList(TypeToken.of(String.class));
             List<Booster> boosters = new ArrayList<>();
             for (String b : boosterNames) {
@@ -501,15 +503,40 @@ public class BoosterUtils {
 
                             if (!globalBooster.isActive()) {
 
+                                BetterBoosters.logger.info("Activating Global Booster: " + globalBoosterName);
                                 globalBooster.setActive(true);
+
+                            } else {
+
+                                BetterBoosters.logger.info("Global Booster " + globalBoosterName + " is already active, not activating it again.");
 
                             }
 
+                        } else {
+
+                            BetterBoosters.logger.info("Global Booster " + globalBoosterName + "'s minute values are not within parameters");
+                            BetterBoosters.logger.info("Minute values: startMinute == " + startMinute + " /nowMinute == " + nowMinute + " /endMinute == " + endMinute);
+
                         }
+
+                    } else {
+
+                        BetterBoosters.logger.info("Global Booster " + globalBoosterName + "'s hour values are not within parameters");
+                        BetterBoosters.logger.info("Hour values: startHour == " + startHour + " /nowHour == " + nowHour + " /endHour == " + endHour);
 
                     }
 
+                } else {
+
+                    BetterBoosters.logger.info("Global Booster " + globalBoosterName + "'s day values are not within parameters");
+                    BetterBoosters.logger.info("Day values: startDay == " + startDay + " /nowDay == " + nowDay + " /endDay == " + endDay);
+
                 }
+
+            } else {
+
+                BetterBoosters.logger.info("Global Booster " + globalBoosterName + "'s month values are not within parameters");
+                BetterBoosters.logger.info("Month values: startMonth == " + startMonth + " /nowMonth == " + nowMonth + " /endMonth == " + endMonth);
 
             }
 
