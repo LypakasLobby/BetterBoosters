@@ -5,9 +5,12 @@ import com.lypaka.betterboosters.Boosters.BoosterTask;
 import com.lypaka.betterboosters.Boosters.BoosterUtils;
 import com.lypaka.betterboosters.Boosters.DefaultBoosters.*;
 import com.lypaka.betterboosters.Boosters.GlobalBooster;
+import com.lypaka.betterboosters.LegendaryBiomeMap;
 import com.lypaka.lypakautils.MiscHandlers.PermissionHandler;
+import com.lypaka.lypakautils.MiscHandlers.PixelmonHelpers;
 import com.pixelmonmod.pixelmon.api.events.spawning.SpawnEvent;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
+import com.pixelmonmod.pixelmon.api.pokemon.PokemonBuilder;
 import com.pixelmonmod.pixelmon.api.pokemon.boss.BossTier;
 import com.pixelmonmod.pixelmon.api.pokemon.boss.BossTierRegistry;
 import com.pixelmonmod.pixelmon.api.util.helpers.RandomHelper;
@@ -62,7 +65,28 @@ public class DefaultPixelmonSpawnerListeners {
 
                             for (Booster b : booster.getBoosters()) {
 
-                                if (b instanceof BossBooster) {
+                                if (b instanceof LegendaryBooster) {
+
+                                    String biome = player.world.getBiome(player.getPosition()).getRegistryName().toString();
+                                    if (RandomHelper.getRandomChance(b.getChance())) {
+
+                                        if (LegendaryBiomeMap.speciesMap.containsKey(biome)) {
+
+                                            int dexNum = RandomHelper.getRandomElementFromList(LegendaryBiomeMap.speciesMap.get(biome));
+                                            Pokemon newPokemon = PixelmonHelpers.fixPokemonIVsAndGender(PokemonBuilder.builder().species(dexNum).build());
+                                            newPokemon.setLevel(RandomHelper.getRandomNumberBetween(newPokemon.getForm().minLevel, newPokemon.getForm().maxLevel));
+                                            pokemon.setSpecies(newPokemon.getSpecies(), true);
+                                            if (((LegendaryBooster) b).locksToPlayer()) {
+
+                                                pokemon.getPersistentData().putString("LockedTo", player.getUniqueID().toString());
+
+                                            }
+
+                                        }
+
+                                    }
+
+                                } else if (b instanceof BossBooster) {
 
                                     BossBooster bossBooster = (BossBooster) b;
                                     if (RandomHelper.getRandomChance(bossBooster.getChance())) {
@@ -169,7 +193,23 @@ public class DefaultPixelmonSpawnerListeners {
 
                     for (BoosterTask task : BoosterUtils.activeTasks) {
 
-                        if (task.getBooster() instanceof BossBooster) {
+                        if (task.getBooster() instanceof LegendaryBooster) {
+
+                            String biome = player.world.getBiome(player.getPosition()).getRegistryName().toString();
+                            if (RandomHelper.getRandomChance(task.getBooster().getChance())) {
+
+                                if (LegendaryBiomeMap.speciesMap.containsKey(biome)) {
+
+                                    int dexNum = RandomHelper.getRandomElementFromList(LegendaryBiomeMap.speciesMap.get(biome));
+                                    Pokemon newPokemon = PixelmonHelpers.fixPokemonIVsAndGender(PokemonBuilder.builder().species(dexNum).build());
+                                    newPokemon.setLevel(RandomHelper.getRandomNumberBetween(newPokemon.getForm().minLevel, newPokemon.getForm().maxLevel));
+                                    pokemon.setSpecies(newPokemon.getSpecies(), true);
+
+                                }
+
+                            }
+
+                        } else if (task.getBooster() instanceof BossBooster) {
 
                             List<UUID> uuids = task.playerList;
                             if (uuids.contains(player.getUniqueID())) {

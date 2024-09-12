@@ -3,6 +3,7 @@ package com.lypaka.betterboosters.Listeners;
 import com.lypaka.betterboosters.BetterBoosters;
 import com.lypaka.betterboosters.Boosters.GlobalBoosterTask;
 import com.lypaka.betterboosters.Commands.BetterBoostersCommand;
+import com.lypaka.betterboosters.LegendaryBiomeMap;
 import com.lypaka.betterboosters.Listeners.Boosters.AttackListeners;
 import com.lypaka.betterboosters.Listeners.Boosters.CaptureListener;
 import com.lypaka.betterboosters.Listeners.Boosters.DefaultPixelmonSpawnerListeners;
@@ -25,11 +26,13 @@ public class ServerStartedListener {
         MinecraftForge.EVENT_BUS.register(new LoginListener());
 
         Pixelmon.EVENT_BUS.register(new AttackListeners());
+        Pixelmon.EVENT_BUS.register(new BattleListener());
         Pixelmon.EVENT_BUS.register(new CaptureListener());
         Pixelmon.EVENT_BUS.register(new DefaultPixelmonSpawnerListeners());
         Pixelmon.EVENT_BUS.register(new ExperienceListener());
 
         GlobalBoosterTask.runGlobalTimer();
+        LegendaryBiomeMap.load();
 
     }
 

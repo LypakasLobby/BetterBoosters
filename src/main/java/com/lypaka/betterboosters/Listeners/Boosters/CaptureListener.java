@@ -7,6 +7,7 @@ import com.lypaka.betterboosters.Boosters.DefaultBoosters.CaptureBooster;
 import com.lypaka.betterboosters.Boosters.GlobalBooster;
 import com.lypaka.lypakautils.MiscHandlers.PermissionHandler;
 import com.pixelmonmod.pixelmon.api.events.CaptureEvent;
+import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -21,6 +22,18 @@ public class CaptureListener {
 
         int current = event.getCaptureValues().getCatchRate();
         ServerPlayerEntity player = event.getPlayer();
+        Pokemon pokemon = event.getPokemon().getPokemon();
+        if (pokemon.getPersistentData().contains("LockedTo")) {
+
+            String uuidString = pokemon.getPersistentData().getString("LockedTo");
+            if (!uuidString.equalsIgnoreCase(player.getUniqueID().toString())) {
+
+                event.setCanceled(true);
+                return;
+
+            }
+
+        }
 
         // Checking global boosters first
         for (Map.Entry<String, GlobalBooster> entry : BoosterUtils.globalBoosters.entrySet()) {
