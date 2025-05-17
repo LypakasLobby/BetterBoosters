@@ -153,7 +153,7 @@ public class DefaultPixelmonSpawnerListeners {
 
                                     if (!pokemon.isShiny()) {
 
-                                        if (RandomHelper.getRandomChance(b.getChance())) {
+                                        if (RandomHelper.getRandomNumberBetween(1, (int) b.getChance()) == 1) {
 
                                             pokemon.setShiny(true);
 
@@ -294,7 +294,7 @@ public class DefaultPixelmonSpawnerListeners {
 
                                 if (!pokemon.isShiny()) {
 
-                                    if (RandomHelper.getRandomChance(task.getBooster().getChance())) {
+                                    if (RandomHelper.getRandomNumberBetween(1, (int) task.getBooster().getChance()) == 1) {
 
                                         pokemon.setShiny(true);
 
@@ -341,7 +341,7 @@ public class DefaultPixelmonSpawnerListeners {
 
     }
 
-    private static BossTier getBossTier (BossBooster booster) {
+    public static BossTier getBossTier (BossBooster booster) {
 
         BossTier tier = null;
         Map<String, Double> map = booster.getBossSpawnRates();

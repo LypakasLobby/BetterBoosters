@@ -22,11 +22,11 @@ public class BetterBoosters {
     public static final String MOD_ID = "betterboosters";
     public static final String MOD_NAME = "BetterBoosters";
     public static final Logger logger = LogManager.getLogger(MOD_NAME);
-    public static boolean isBetterMissionsLoaded = false;
-    public static boolean isBetterLuresLoaded = false;
     public static BasicConfigManager configManager;
     public static BasicConfigManager boosterConfigManager;
     public static PlayerConfigManager playerConfigManager;
+    public static boolean isBetterMissionsLoaded = false;
+    public static boolean isBetterLuresLoaded = false;
     public static Path dir;
     public static List<String> boosters = new ArrayList<>(Arrays.asList("Attack", "Boss", "Capture", "EXP", "HA",
             "IV", "Legendary", "Shiny", "Texture"));
